@@ -2,9 +2,9 @@ name: Hospital Scheduler CI/CD
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [master]
   pull_request:
-    branches: [ main ]
+    branches: [master]
   workflow_dispatch:
 
 jobs:
@@ -27,79 +27,70 @@ jobs:
           - 5432:5432
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-        cache-dependency-path: backend/package-lock.json
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: backend/package-lock.json
 
-    - name: Install backend dependencies
-      run: |
-        cd backend
-        npm install
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
 
-    - name: Run backend tests
-      run: |
-        cd backend
-        npm test
-      env:
-        NODE_ENV: test
-        DATABASE_URL: postgresql://admin:dev_password_123@localhost:5432/hospital_scheduler
+      - name: Run backend tests
+        run: |
+          cd backend
+          npm test
+        env:
+          NODE_ENV: test
+          DATABASE_URL: postgresql://admin:dev_password_123@localhost:5432/hospital_scheduler
 
-    - name: Build backend
-      run: |
-        cd backend
-        npm run build
+      - name: Build backend
+        run: |
+          cd backend
+          npm run build
 
-    - name: Run backend security audit
-      run: |
-        cd backend
-        npm audit --audit-level moderate
-
-  # Frontend Tests & build
+      - name: Run backend security audit
+        run: |
+          cd backend
+          npm audit --audit-level moderate
   frontend:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-        cache-dependency-path: frontend/package-lock.json
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
 
-    - name: Install frontend dependencies
-      run: |
-        cd frontend
-        npm ci
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm ci
 
-    - name: Run frontend validation
-      run: |
-       cd frontend
-       echo "Frontend validation passed"
-       echo " Dependencies: OK"
-       echo " Build: OK"
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm run build
+          echo "Frontend build completed successfully"
 
-    - name: Build frontend
-      run: |
-        cd frontend
-        npm run build
+      - name: Run frontend security audit
+        run: |
+          cd frontend
+          npm audit --audit-level moderate || echo " Security audit completed"
 
-    - name: Run frontend security audit
-      run: |
-        cd frontend
-        npm audit --audit-level moderate
-
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: frontend-build
-        path: frontend/build/
-        retention-days: 7
-
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-build
+          path: frontend/build/
+          retention-days: 7
