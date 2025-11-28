@@ -40,7 +40,7 @@ jobs:
       - name: Install backend dependencies
         run: |
           cd backend
-          npm installpm install
+          npm install
 
       - name: Run backend tests
         run: |
