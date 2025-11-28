@@ -1,0 +1,55 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="90" fill="#2563eb" opacity="0.1"/>
+  
+  <!-- Calendar base -->
+  <rect x="50" y="60" width="100" height="90" rx="8" fill="#2563eb"/>
+  <rect x="55" y="75" width="90" height="70" rx="4" fill="white"/>
+  
+  <!-- Calendar header -->
+  <rect x="50" y="60" width="100" height="20" rx="8" fill="#1e40af"/>
+  <rect x="50" y="70" width="100" height="10" fill="#1e40af"/>
+  
+  <!-- Calendar binding rings -->
+  <circle cx="70" cy="65" r="4" fill="white"/>
+  <circle cx="100" cy="65" r="4" fill="white"/>
+  <circle cx="130" cy="65" r="4" fill="white"/>
+  
+  <!-- Calendar grid dots -->
+  <circle cx="70" cy="95" r="3" fill="#2563eb"/>
+  <circle cx="90" cy="95" r="3" fill="#2563eb"/>
+  <circle cx="110" cy="95" r="3" fill="#2563eb"/>
+  <circle cx="130" cy="95" r="3" fill="#2563eb"/>
+  
+  <circle cx="70" cy="110" r="3" fill="#2563eb"/>
+  <circle cx="90" cy="110" r="3" fill="#2563eb"/>
+  <circle cx="110" cy="110" r="3" fill="#2563eb"/>
+  <circle cx="130" cy="110" r="3" fill="#2563eb"/>
+  
+  <circle cx="70" cy="125" r="3" fill="#2563eb"/>
+  <circle cx="90" cy="125" r="3" fill="#2563eb"/>
+  <circle cx="110" cy="125" r="3" fill="#10b981"/>
+  <circle cx="130" cy="125" r="3" fill="#2563eb"/>
+  
+  <!-- Medical cross overlay -->
+  <g transform="translate(100, 115)">
+    <rect x="-4" y="-15" width="8" height="30" rx="2" fill="#10b981"/>
+    <rect x="-15" y="-4" width="30" height="8" rx="2" fill="#10b981"/>
+  </g>
+  
+  <!-- Pulse line accent -->
+  <path d="M 30 45 L 50 45 L 55 35 L 60 55 L 65 45 L 170 45" 
+        stroke="#10b981" 
+        stroke-width="2.5" 
+        fill="none" 
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+  
+  <!-- Text -->
+  <text x="100" y="170" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#1e40af">
+    HOSPITAL
+  </text>
+  <text x="100" y="188" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#2563eb">
+    Scheduler
+  </text>
+</svg>
